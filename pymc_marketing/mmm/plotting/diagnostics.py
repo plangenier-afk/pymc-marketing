@@ -291,7 +291,8 @@ class DiagnosticsPlots:
                 f"Available: {list(pp_ds.data_vars)}"
             )
         predictions = pp_ds[pp_var]
-        target = data.get_target(original_scale=True)
+        original_scale = pp_var == "y_original_scale"
+        target = data.get_target(original_scale=original_scale)
         residuals = target - predictions
         residuals.name = "residuals"
         return residuals
@@ -616,7 +617,7 @@ class DiagnosticsPlots:
         return_as_pc: bool = False,
         dist_kwargs: dict[str, Any] | None = None,
         **pc_kwargs,
-    ) -> PlotCollection | tuple[Figure, NDArray[Axes]]:
+    ) -> tuple[Figure, NDArray[Axes]] | PlotCollection:
         """Plot the posterior distribution of residuals using arviz-plots.
 
         Uses ``azp.plot_dist`` (KDE) with quantile reference lines via
