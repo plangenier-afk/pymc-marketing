@@ -197,5 +197,9 @@ def _extract_matplotlib_result(
     if return_as_pc:
         return pc
     fig = pc.viz.ds["figure"].item()
-    axes = np.atleast_1d(np.array(fig.get_axes()))
+    if "plot" in pc.viz.ds:
+        plot_da = pc.viz.ds["plot"]
+        axes = np.atleast_1d(np.array(plot_da.values.flat))
+    else:
+        axes = np.atleast_1d(np.array(fig.get_axes()))
     return fig, axes
