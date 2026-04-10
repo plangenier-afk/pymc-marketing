@@ -272,7 +272,7 @@ class DecompositionPlots:
         pc.map(azp.visuals.labelled_title, subset_info=True, ignore_aes={"color"})
         pc.add_legend("component")
 
-        return _extract_matplotlib_result(pc, return_as_pc), entries
+        return _extract_matplotlib_result(pc, return_as_pc)
 
     def waterfall(
         self,
@@ -347,7 +347,7 @@ class DecompositionPlots:
 
         n_panels = len(combos)
         fig, axes_raw = plt.subplots(
-            n_panels, 1, figsize=figsize or (6 * n_panels, 4), squeeze=False
+            n_panels, 1, figsize=figsize or (6, 4 * n_panels), squeeze=False
         )
         axes_flat = axes_raw.flatten()
 
