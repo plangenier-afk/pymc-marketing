@@ -75,8 +75,8 @@ class DecompositionPlots:
         components = [*entries, ("total", total)]
 
         running = 0.0
-        for bar_idx, (label, val) in enumerate(components):
-            if label == "total":
+        for bar_idx, (_label, val) in enumerate(components):
+            if bar_idx == len(components) - 1:
                 color = "grey"
                 left = 0.0
                 width = val
